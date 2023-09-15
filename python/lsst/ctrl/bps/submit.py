@@ -59,7 +59,8 @@ def submit(config, wms_workflow, wms_service=None, remote_build=None, config_fil
     if wms_service is None:
         wms_service_class = doImport(config["wmsServiceClass"])
         wms_service = wms_service_class(config)
-
+    
+    #'''
     if not remote_build:
         _, when_create = config.search(".executionButler.whenCreate")
         if when_create.upper() == "SUBMIT":
@@ -71,7 +72,7 @@ def submit(config, wms_workflow, wms_service=None, remote_build=None, config_fil
                 _create_execution_butler(
                     config, config["runQgraphFile"], execution_butler_dir, config["submitPath"]
                 )
-
+    #'''
     _LOG.info("Submitting run to a workflow management system for execution")
     with time_this(
         log=_LOG, level=logging.INFO, prefix=None, msg="Completed submitting to a workflow management system"
